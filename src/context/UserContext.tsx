@@ -1,20 +1,23 @@
 import React, { createContext, useState, FC, useContext, ReactNode  } from "react";
 import {TUser} from "../types/users";
 
-type UserContextProps = {
+interface TUserProps {
+    children: ReactNode;
+}
+
+
+type TUserContext = {
     users: TUser[];
     addUsers: (users: TUser[]) => void;
     duplicateUsers: (userIds: number[]) => void;
     deleteUsers: (userIds: number[]) => void;
 }
 
-const UserContext = createContext<UserContextProps>(
-    {} as UserContextProps
-);
+const UserContext = createContext<TUserContext | null>(null);
 
 export const useUserContext = () => useContext(UserContext);
 
-const UserProvider: React.FC<React.ReactNode> = ({ children }: { children: ReactNode }) => {
+const UserProvider: FC<TUserProps> = ({ children }) => {
     const [users, setUsers] = useState<TUser[]>([]);
 
     const addUsers = ( users: TUser[]) => {
@@ -22,11 +25,11 @@ const UserProvider: React.FC<React.ReactNode> = ({ children }: { children: React
     };
 
     const duplicateUsers = (userIds: number[]) => {
-        console.log('duplicateUser')
+        console.log('duplicateUser', userIds)
     };
 
     const deleteUsers = (userIds: number[]) => {
-        console.log('deleteUser')
+        console.log('deleteUser', userIds)
     };
 
 

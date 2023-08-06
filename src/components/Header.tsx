@@ -1,13 +1,15 @@
-import React from 'react'
+import React, { memo }  from 'react'
 
-interface HeaderProps {
+import '../styles/Header.css';
+
+type HeaderProps = {
     text: string;
 }
 
-export const Header: React.FC<HeaderProps>  = ({text}) => {
+export const Header: React.FC<HeaderProps>  = memo(({text}) => {
  return (
-     <header>
-         {text}
+     <header className="Header">
+         <h1>{text}</h1>
      </header>
  )
-}
+})

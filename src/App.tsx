@@ -1,26 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from 'react'
+import { Header } from "./components/Header";
+import { Input } from "./components/Input";
+
+import locale from './locales/en.json';
+
+import './styles/App.css';
+import { getUsers } from "./utils/api";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [search, setSearch] = useState<string>('')
+    const [error, setError] = useState<string>('')
+
+    useEffect( () => {
+        const getUsersData = async () => {
+            if (search.length > 0) {
+                const data = await getUsers(search);
+                if('message' in data && data.message.includes('API rate limit exceeded')){
+                    console.log('rateL', data);
+
+                } else {
+                    console.log('setU', data);
+                }
+            }
+        };
+        getUsersData();
+    }, [search])
+
+    return (
+        <>
+          <Header text={locale.header} />
+          <Input placeholder={locale.input} value={search} onChange={setSearch} />
+        </>
+    );
 }
 
 export default App;
