@@ -1,29 +1,28 @@
-import React from 'react'
-import {debounce} from "../helpers/debounce";
-
+import React, { memo } from 'react';
+import { throttle } from "../helpers/throttle";
 import '../styles/Input.css';
 
 type InputProps = {
-    debounceDelay?: number;
-    value: string;
+    successMessage?: string;
+    errorMessage?: string;
+    delay?: number;
     onChange: (value: string) => void;
     placeholder?: string;
+    extraInformation?: string;
 }
 
-export const Input: React.FC<InputProps>  = ({debounceDelay = 30, onChange, value, placeholder = '...'}) => {
-
-    const handleInputChangeDebounced = debounce((value: string) => {
-        onChange(value);
-    }, debounceDelay);
-
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const newValue = event.target.value;
-        handleInputChangeDebounced(newValue);
-    };
+export const Input: React.FC<InputProps> = memo(({ extraInformation, successMessage, errorMessage, delay = 2000, onChange,  placeholder = '...' }) => {
+    const handleThrottledChange = throttle((event: React.ChangeEvent<HTMLInputElement>) => {
+        const newValue = event.target?.value;
+        onChange(newValue);
+    }, delay);
 
     return (
         <div className="searchBar">
-            <input type="text" value={value} onChange={handleChange} placeholder={placeholder}/>
+            <input type="text" onChange={handleThrottledChange}  placeholder={placeholder} />
+            {successMessage ? <p className="successMessage">{successMessage}</p> : null}
+            {errorMessage ? <p className="errorMessage">{errorMessage}</p> : null}
+            {extraInformation ? <p className="extraMessage">{extraInformation}</p> : null}
         </div>
-    )
-}
+    );
+})

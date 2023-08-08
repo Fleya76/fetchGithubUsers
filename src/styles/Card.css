@@ -1,0 +1,26 @@
+.card {
+    border-radius: 15px;
+    background-color: #D5D5D5;
+    width: 100px;
+    text-align: center;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    font-size: 12px;
+    height: 145px;
+}
+
+.card img {
+    border-radius: 50%;
+    max-width: 45px;
+}
+
+.card .login {
+    text-overflow: ellipsis;
+}
+
+.card button {
+    background-color: #00A1FF;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

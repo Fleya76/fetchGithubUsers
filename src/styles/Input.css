@@ -1,8 +1,9 @@
 .searchBar {
     align-items: center;
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    height: 125px;
+    height: 200px;
 }
 
 .searchBar input[type="text"] {
@@ -19,6 +20,9 @@
     text-align: center;
 }
 
-
+.errorMessage {
+    color: red;
+    margin: 15px;
+}
 
 

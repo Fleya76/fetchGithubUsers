@@ -1,0 +1,10 @@
+.gallery {
+    display: flex;
+    border-radius: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+    overflow-y: scroll;
+    height: 50vh;
+    flex-grow: 1;
+}
