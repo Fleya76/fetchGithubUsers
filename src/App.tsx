@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Header } from "./components/Header";
-import { Action } from "./components/Action";
+import { ItemsAction } from "./components/ItemsAction";
 import { Input } from "./components/Input";
 import { Gallery } from "./components/Gallery";
 
@@ -14,7 +14,7 @@ import './styles/App.css';
 function App() {
     const [search, setSearch] = useState<string>('')
     const [loading, setLoading] = useState<boolean>(false);
-    const [users, setUsers] = useState<TUser[]>([])
+    const [items, setItems] = useState<TUser[]>([])
     const [error, setError] = useState<string>('')
     const [countItems, setCountItems] = useState<number>()
 
@@ -22,17 +22,16 @@ function App() {
         const getUsersData = async () => {
             setError('')
             setCountItems(0)
-            setUsers([])
-            if (search.length > 2) {
+            setItems([])
+            if (search.length > 1) {
                 try {
                     setLoading(true)
                     const data = await getUsers(search);
                     if('message' in data && data.message.includes('API rate limit exceeded')){
                         setError(data.message)
                     } else {
-                        setUsers('items' in data ? data.items : users)
+                        setItems('items' in data ? data.items : items)
                         setCountItems('total_count' in data ? data.total_count : countItems)
-                        setError('')
                     }
                 } catch(err) {
                     setError(`${err}`)
@@ -40,7 +39,7 @@ function App() {
                     setLoading(false)
                 }
             } else {
-                setUsers([])
+                setItems([])
             }
         };
         getUsersData();
@@ -49,9 +48,9 @@ function App() {
     return (
         <>
             <Header text={locale.header} />
-            <Input  {...(countItems && countItems > users.length ? {extraInformation: `${locale.maxDispay}` }: null)}  {...(countItems ? { successMessage: `${locale.totalItems} ${countItems}` } : null)} errorMessage={error} placeholder={locale.input} onChange={setSearch} />
-            <Action withCheckbox withDelete withDuplicate />
-            {loading ? <p className="loading">{locale.loading}</p>: <Gallery isEmptyMessage={locale.isEmpty} items={users} />}
+            <Input  {...(countItems && countItems > items.length ? {extraInformation: `${locale.maxDispay}` }: null)}  {...(countItems ? { successMessage: `${locale.totalItems} ${countItems}` } : null)} errorMessage={error} placeholder={locale.input} onChange={setSearch} />
+            {countItems ? <ItemsAction withCheckbox withDelete withDuplicate /> : null}
+            {loading ? <p className="loading">{locale.loading}</p>: <Gallery isEmptyMessage={locale.isEmpty} items={items} />}
         </>
     );
 }
