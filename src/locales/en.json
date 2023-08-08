@@ -4,7 +4,7 @@
   "elementsSelected": "elements selected",
   "profil": "View profile",
   "loading": "Wait a bit, the results are coming",
-  "isEmpty": "Your search yielded no results",
+  "isEmpty": "Your search did not yield any results",
   "totalItems": "The number of items is",
   "maxDispay": "We can display a maximum of 30 profiles. Please refine your search to find the desired item.",
   "checkboxItems": "element(s) selected"

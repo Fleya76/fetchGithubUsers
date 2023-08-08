@@ -25,6 +25,7 @@ type TUser = {
     type: string;
     site_admin: boolean;
     score: number;
+    isChecked?: boolean;
 }
 
 export type { TItems, TUser  }
