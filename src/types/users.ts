@@ -5,6 +5,9 @@ type TItems = {
     items: TUser[]
 }
 
+/**
+ * Description: Type for user object from Github API (https://docs.github.com/fr).
+ */
 type TUser = {
     login: string;
     id: number;

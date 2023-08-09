@@ -8,6 +8,10 @@ import { getUsers } from "./utils/api";
 import locale from './locales/en.json';
 
 import './styles/App.css';
+
+/**
+ * Description: App component to display the app.
+ */
 function App() {
     const { users, addUsers } = useUserContext();
     const [search, setSearch] = useState<string>('')

@@ -9,6 +9,9 @@ import '../styles/Card.css';
 
 type CardProps = Pick<TUser, 'avatar_url' | 'login' | 'html_url' | 'id' | 'isChecked'>;
 
+/**
+ * Description: Card component to display a user.
+ */
 export const Card: React.FC<CardProps>  = memo(({avatar_url,login,html_url,id, isChecked}) => {
     const { handleUserCheck } = useUserContext();
     

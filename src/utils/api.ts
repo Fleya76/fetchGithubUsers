@@ -9,6 +9,9 @@ type TApiMessage = {
     message: string;
 }
 
+/**
+ * Description: Function to fetch users from GitHub API.
+ */
 const getUsers = async (query: string): Promise<TItems | TApiMessage> => {
     try {
         const response = await fetch(`${API}${SEARCH}${USERS}?q=${query}`);

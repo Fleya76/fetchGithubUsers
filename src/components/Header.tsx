@@ -5,9 +5,12 @@ type HeaderProps = {
     text: string;
 }
 
+/**
+ * Description: A simple header component to display a text.
+ */
 export const Header: React.FC<HeaderProps>  = memo(({text}) => {
  return (
-     <header className="Header">
+     <header className="header">
          <h1>{text}</h1>
      </header>
  )

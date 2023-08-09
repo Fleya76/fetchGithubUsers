@@ -11,6 +11,9 @@ type InputProps = {
     extraInformation?: string;
 }
 
+/**
+ * Description: Input component to execute a callback onChange to get users from API.
+ */
 export const Input: React.FC<InputProps> = memo(({ extraInformation, successMessage, errorMessage, delay = 2000, onChange,  placeholder = '...' }) => {
     const handleThrottledChange = throttle((event: React.ChangeEvent<HTMLInputElement>) => {
         const newValue = event.target?.value;

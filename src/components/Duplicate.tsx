@@ -5,6 +5,9 @@ type DuplicateProps = {
     onClick: () => void;
 }
 
+/**
+ * Description: An svg component to duplicate an item.
+ */
 export const Duplicate: React.FC<DuplicateProps>  = memo(({onClick}) => {
  return (
     <svg className='duplicate' xmlns="http://www.w3.org/1999/xlink" viewBox="0 0 16 16" version="1.1"  width="20px" height="20px"  onClick={onClick} aria-label="Duplicate">

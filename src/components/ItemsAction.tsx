@@ -14,6 +14,9 @@ type ItemsActionProps = {
     withCheckbox?: boolean;
 }
 
+/**
+ * Description: ItemsAction component to display actions of items and execute them by a context.
+ */
 export const ItemsAction: React.FC<ItemsActionProps>  = ({withCheckbox = false, withDelete = false, withDuplicate = false}) => {
     const { countCheckedItems, handleUserCheck, deleteSelectedUsers, duplicateSelectedUsers} = useUserContext();
     

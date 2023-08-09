@@ -1,3 +1,6 @@
+/**
+ * Description: Function to truncate a string.
+ */
 const truncateString = (str: string, num: number): string => {
     if (str.length <= num) {
         return str;

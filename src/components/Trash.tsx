@@ -5,6 +5,9 @@ type TrashProps = {
     onClick: () => void;
 }
 
+/**
+ * Description: An svg component to delete an item by clicking on it.
+ */
 export const Trash: React.FC<TrashProps>  = memo(({onClick}) => {
  return (
     <svg aria-label="Delete" width="20px" height="20px" viewBox="0 0 875 1000" xmlns="http://www.w3.org/2000/svg"  onClick={onClick}>

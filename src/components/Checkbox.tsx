@@ -8,6 +8,9 @@ type CheckboxProps = {
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
+/**
+ * Description: An simple checkbox to select an item and execute an action on it.
+ */
 export const Checkbox: React.FC<CheckboxProps>  = memo(({isChecked, label, onChange}) => {
     return (
         <>    

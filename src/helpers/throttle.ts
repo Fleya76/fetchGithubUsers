@@ -1,3 +1,6 @@
+/**
+ * Description: Function to throttle the execution of a function.
+ */
 const throttle = (fn: Function, wait: number = 300) => {
     let inThrottle: boolean,
         lastFn: ReturnType<typeof setTimeout>,

@@ -9,6 +9,9 @@ type GalleryProps = {
     items: TUser[];
 }
 
+/**
+ * Description: Gallery component to display a list of users.
+ */
 export const Gallery: React.FC<GalleryProps>  = memo(({isEmptyMessage, items}) => {
 
 const galleryContent = items.length > 0 ? (

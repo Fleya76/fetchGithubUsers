@@ -14,6 +14,9 @@ type TUserContext = {
     deleteSelectedUsers: () => void;
 }
 
+/** 
+ * Description: Context to manage the users state.
+ */
 const UserContext = createContext<TUserContext>({
     users: [],
     addUsers: () => {},
@@ -23,8 +26,14 @@ const UserContext = createContext<TUserContext>({
     deleteSelectedUsers: () => {}
 });
 
+/**
+ * Description: Custom hook to get the users context.
+ */
 export const useUserContext = () => useContext(UserContext);
 
+/**
+ * Description: Context provider to manage the users state.
+ */
 const UserProvider: FC<TUserProps> = ({ children }) => {
     const [users, setUsers] = useState<TUser[]>([]);
 
