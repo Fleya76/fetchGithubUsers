@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useUserContext } from './context/UserContext';
+import { useEditMode } from './context/EditModeContext';
 import { Header } from "./components/Header";
 import { ItemsAction } from "./components/ItemsAction";
 import { Input } from "./components/Input";
@@ -13,6 +14,7 @@ import './styles/App.css';
  * Description: App component to display the app.
  */
 function App() {
+    const { editMode } = useEditMode();
     const { users, addUsers } = useUserContext();
     const [search, setSearch] = useState<string>('')
     const [loading, setLoading] = useState<boolean>(false)
@@ -57,9 +59,9 @@ function App() {
     return (
         <>
             <Header text={locale.header} />
-            <Input  {...inputProps}  />
-            {countItems ? <ItemsAction withCheckbox withDelete withDuplicate /> : null}
-            {loading ? <p className="loading">{locale.loading}</p>: <Gallery isEmptyMessage={locale.isEmpty} items={users} />}
+            <Input {...inputProps} />
+            {editMode && countItems ? <ItemsAction withCheckbox withDelete withDuplicate /> : null}
+            {loading ? <p className="loading">{locale.loading}</p>: <Gallery isEmptyMessage={locale.isEmpty} items={users} />}               
         </>
     );
 }

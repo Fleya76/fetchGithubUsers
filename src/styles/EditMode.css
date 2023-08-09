@@ -1,0 +1,9 @@
+.editMode {
+    cursor: pointer;
+    top: 0;
+    right: 0;
+    position: fixed;
+    background-color: rosybrown;
+    border-radius: 10px;
+    border: none;
+}

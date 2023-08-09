@@ -16,3 +16,7 @@
 # URL
 
 - Frontend in local: http://localhost:3000
+
+# Usefull informations 
+
+- The edit mode button is on top right of your screen in the color rosybrown. Enjoy ;)

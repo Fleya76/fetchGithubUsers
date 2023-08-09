@@ -1,9 +1,10 @@
 import React, {memo}  from 'react'
 import { Checkbox } from "./Checkbox";
-import {truncateString} from "../helpers/truncateString";
-import {TUser} from "../types/users";
+import { truncateString} from "../helpers/truncateString";
+import { TUser} from "../types/users";
 import locale from "../locales/en.json";
 import { useUserContext } from '../context/UserContext';
+import { useEditMode } from '../context/EditModeContext';
 
 import '../styles/Card.css';
 
@@ -13,6 +14,7 @@ type CardProps = Pick<TUser, 'avatar_url' | 'login' | 'html_url' | 'id' | 'isChe
  * Description: Card component to display a user.
  */
 export const Card: React.FC<CardProps>  = memo(({avatar_url,login,html_url,id, isChecked}) => {
+    const { editMode } = useEditMode();
     const { handleUserCheck } = useUserContext();
     
     const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -23,9 +25,9 @@ export const Card: React.FC<CardProps>  = memo(({avatar_url,login,html_url,id, i
 
     return (
         <div className="card">
-            <div className='card-header'>
-            <Checkbox isChecked={isChecked} onChange={handleCheckboxChange}/>
-            <img src={avatar_url} alt="avatar" />
+            <div className={editMode ? 'card-header': undefined}>
+                {editMode ? <Checkbox isChecked={isChecked} onChange={handleCheckboxChange}/> : null}
+                <img src={avatar_url} alt="avatar" />
             </div>
             <p>{id}</p>
             <p className="login">{truncatedLogin}</p>

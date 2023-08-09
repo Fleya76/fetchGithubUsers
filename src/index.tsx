@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import UserProvider from "./context/UserContext";
+import { EditModeProvider } from "./context/EditModeContext";
 import App from './App';
 
 import './styles/index.css';
@@ -12,7 +13,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
       <UserProvider>
-          <App />
+        <EditModeProvider>
+            <App />
+        </EditModeProvider>
       </UserProvider>
   </React.StrictMode>
 );
