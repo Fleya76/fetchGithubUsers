@@ -16,15 +16,17 @@ export const Card: React.FC<CardProps>  = memo(({avatar_url,login,html_url,id, i
         handleUserCheck(event.target.checked, id)
     }
 
+    const truncatedLogin = truncateString(login, 10);
+
     return (
         <div className="card">
             <div className='card-header'>
             <Checkbox isChecked={isChecked} onChange={handleCheckboxChange}/>
-            <img src={avatar_url} />
+            <img src={avatar_url} alt="avatar" />
             </div>
             <p>{id}</p>
-            <p className="login">{truncateString(login, 10)}</p>
-            <a href={html_url} target="_blank"><button>{locale.profil}</button></a>
+            <p className="login">{truncatedLogin}</p>
+            <a href={html_url} target="_blank" rel="noopener noreferrer"><button>{locale.profil}</button></a>
         </div>
     )
 })

@@ -1,9 +1,11 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
-import App from '../App';
+import { Header } from '../components/Header';
 
-test('renders learn react link', () => {
-    render(<App />);
-    const linkElement = screen.getByText(/learn react/i);
-    expect(linkElement).toBeInTheDocument();
+describe('Header', () => {
+  it('renders header with correct text', () => {
+    const mockText = 'My Header';
+    render(<Header text={mockText} />);
+    const headerElement = screen.getByRole('heading', { name: /my header/i });
+    expect(headerElement).toBeInTheDocument();
+  });
 });

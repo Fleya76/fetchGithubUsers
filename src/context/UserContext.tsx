@@ -45,7 +45,7 @@ const UserProvider: FC<TUserProps> = ({ children }) => {
     const duplicateSelectedUsers = () => {
         const usersToDuplicate = users.filter((user) => user.isChecked);
         // We should replace this logic in the backend side and get the new users from there to avoid the id duplication.
-        setUsers([...users, ...usersToDuplicate.map((user) => ({...user, id: user.id + 1}))]);
+        setUsers([...users, ...usersToDuplicate.map((user) => ({...user, id: user.id + Math.floor(Math.random() * 100)}))]);
     };
 
     const deleteSelectedUsers = () => {

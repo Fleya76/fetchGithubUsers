@@ -17,12 +17,16 @@ export const Input: React.FC<InputProps> = memo(({ extraInformation, successMess
         onChange(newValue);
     }, delay);
 
+    const renderSuccessMessage = successMessage && <p className="successMessage">{successMessage}</p>;
+    const renderErrorMessage = errorMessage && <p className="errorMessage">{errorMessage}</p>;
+    const renderExtraMessage = extraInformation && <p className="extraMessage">{extraInformation}</p>;
+  
     return (
         <div className="searchBar">
             <input type="text" onChange={handleThrottledChange}  placeholder={placeholder} />
-            {successMessage ? <p className="successMessage">{successMessage}</p> : null}
-            {errorMessage ? <p className="errorMessage">{errorMessage}</p> : null}
-            {extraInformation ? <p className="extraMessage">{extraInformation}</p> : null}
+            {renderSuccessMessage}
+            {renderErrorMessage}
+            {renderExtraMessage}
         </div>
     );
 })

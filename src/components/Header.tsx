@@ -1,5 +1,4 @@
 import React, { memo }  from 'react'
-
 import '../styles/Header.css';
 
 type HeaderProps = {

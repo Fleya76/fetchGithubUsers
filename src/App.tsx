@@ -1,19 +1,15 @@
 import React, { useEffect, useState } from 'react'
+import { useUserContext } from './context/UserContext';
 import { Header } from "./components/Header";
 import { ItemsAction } from "./components/ItemsAction";
 import { Input } from "./components/Input";
 import { Gallery } from "./components/Gallery";
-
 import { getUsers } from "./utils/api";
-
 import locale from './locales/en.json';
 
 import './styles/App.css';
-import { useUserContext } from './context/UserContext';
-
 function App() {
     const { users, addUsers } = useUserContext();
-
     const [search, setSearch] = useState<string>('')
     const [loading, setLoading] = useState<boolean>(false)
     const [error, setError] = useState<string>('')
@@ -46,10 +42,18 @@ function App() {
         getUsersData();
     }, [search])
 
+    const inputProps = {
+        ...(countItems && users.length && countItems > users.length ? { extraInformation: `${locale.maxDispay}` } : null),
+        ...(countItems && users.length ? { successMessage: `${locale.totalItems} ${countItems}` } : null),
+        errorMessage: error,
+        placeholder: locale.input,
+        onChange: setSearch,
+      };
+
     return (
         <>
             <Header text={locale.header} />
-            <Input  {...(countItems && users.length && countItems > users.length ? {extraInformation: `${locale.maxDispay}` }: null)}  {...(countItems  && users.length ? { successMessage: `${locale.totalItems} ${countItems}` } : null)} errorMessage={error} placeholder={locale.input} onChange={setSearch} />
+            <Input  {...inputProps}  />
             {countItems ? <ItemsAction withCheckbox withDelete withDuplicate /> : null}
             {loading ? <p className="loading">{locale.loading}</p>: <Gallery isEmptyMessage={locale.isEmpty} items={users} />}
         </>
